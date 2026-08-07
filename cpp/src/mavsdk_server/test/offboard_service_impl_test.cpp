@@ -81,22 +81,37 @@ std::string startAndGetTranslatedResult(const mavsdk::Offboard::Result start_res
     MockLazyPlugin lazy_plugin;
     MockOffboard offboard;
     ON_CALL(lazy_plugin, maybe_plugin()).WillByDefault(Return(&offboard));
-    ON_CALL(offboard, start()).WillByDefault(Return(start_result));
+    ON_CALL(offboard, start(_)).WillByDefault(Return(start_result));
     OffboardServiceImpl offboardService(lazy_plugin);
     mavsdk::rpc::offboard::StartResponse response;
+    mavsdk::rpc::offboard::StartRequest request;
 
-    offboardService.Start(nullptr, nullptr, &response);
+    offboardService.Start(nullptr, &request, &response);
 
     return OffboardResult::Result_Name(response.offboard_result().result());
 }
 
-TEST_F(OffboardServiceImplTest, startsEvenWhenArgsAreNull)
+TEST_F(OffboardServiceImplTest, startsUsesTheGivenMode)
 {
     MockLazyPlugin lazy_plugin;
     MockOffboard offboard;
     ON_CALL(lazy_plugin, maybe_plugin()).WillByDefault(Return(&offboard));
     OffboardServiceImpl offboardService(lazy_plugin);
-    EXPECT_CALL(offboard, start()).Times(1);
+    mavsdk::rpc::offboard::StartRequest request;
+    constexpr uint32_t CUSTOM_MODE = 3;
+
+    request.set_mode(CUSTOM_MODE);
+    EXPECT_CALL(offboard, start(CUSTOM_MODE)).Times(1);
+
+    offboardService.Start(nullptr, &request, nullptr);
+}
+
+TEST_F(OffboardServiceImplTest, startDoesNotFailWithNullRequest)
+{
+    MockLazyPlugin lazy_plugin;
+    MockOffboard offboard;
+    ON_CALL(lazy_plugin, maybe_plugin()).WillByDefault(Return(&offboard));
+    OffboardServiceImpl offboardService(lazy_plugin);
 
     offboardService.Start(nullptr, nullptr, nullptr);
 }

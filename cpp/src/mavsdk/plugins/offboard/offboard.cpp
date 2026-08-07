@@ -28,14 +28,14 @@ Offboard::Offboard(std::shared_ptr<System> system) :
 
 Offboard::~Offboard() {}
 
-void Offboard::start_async(const ResultCallback callback)
+void Offboard::start_async(uint32_t mode, const ResultCallback callback)
 {
-    _impl->start_async(callback);
+    _impl->start_async(mode, callback);
 }
 
-Offboard::Result Offboard::start() const
+Offboard::Result Offboard::start(uint32_t mode) const
 {
-    return _impl->start();
+    return _impl->start(mode);
 }
 
 void Offboard::stop_async(const ResultCallback callback)
