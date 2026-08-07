@@ -402,8 +402,11 @@ public:
      * @brief Start offboard control.
      *
      * This function is non-blocking. See 'start' for the blocking counterpart.
+     *
+     * @param mode Custom ArduPilot flight mode number to set before starting
+     * offboard control. 0 (the default) uses MAVSDK's default behaviour.
      */
-    void start_async(const ResultCallback callback);
+    void start_async(uint32_t mode, const ResultCallback callback);
 
 
 
@@ -412,11 +415,13 @@ public:
      *
      * This function is blocking. See 'start_async' for the non-blocking counterpart.
      *
-     
+     * @param mode Custom ArduPilot flight mode number to set before starting
+     * offboard control. 0 (the default) uses MAVSDK's default behaviour.
+     *
      * @return Result of request.
-     
+
      */
-    Result start() const;
+    Result start(uint32_t mode = 0) const;
 
 
 

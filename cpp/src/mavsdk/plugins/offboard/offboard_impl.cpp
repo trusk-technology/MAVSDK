@@ -44,7 +44,7 @@ void OffboardImpl::enable() {}
 
 void OffboardImpl::disable() {}
 
-Offboard::Result OffboardImpl::start()
+Offboard::Result OffboardImpl::start(uint32_t mode)
 {
     {
         std::lock_guard<std::mutex> lock(_mutex);
@@ -52,6 +52,11 @@ Offboard::Result OffboardImpl::start()
             return Offboard::Result::NoSetpointSet;
         }
         _watchdog_grace_start = _time.steady_time();
+    }
+
+    if (mode != 0 && _system_impl->autopilot() == Autopilot::ArduPilot) {
+        MavlinkCommandSender::CommandLong command = make_custom_mode_command(mode);
+        return offboard_result_from_command_result(_system_impl->send_command(command));
     }
 
     return offboard_result_from_command_result(_system_impl->set_flight_mode(FlightMode::Offboard));
@@ -69,7 +74,7 @@ Offboard::Result OffboardImpl::stop()
     return offboard_result_from_command_result(_system_impl->set_flight_mode(FlightMode::Hold));
 }
 
-void OffboardImpl::start_async(Offboard::ResultCallback callback)
+void OffboardImpl::start_async(uint32_t mode, Offboard::ResultCallback callback)
 {
     {
         std::lock_guard<std::mutex> lock(_mutex);
@@ -82,6 +87,15 @@ void OffboardImpl::start_async(Offboard::ResultCallback callback)
             return;
         }
         _watchdog_grace_start = _time.steady_time();
+    }
+
+    if (mode != 0 && _system_impl->autopilot() == Autopilot::ArduPilot) {
+        MavlinkCommandSender::CommandLong command = make_custom_mode_command(mode);
+        _system_impl->send_command_async(
+            command, [callback, this](MavlinkCommandSender::Result result, float) {
+                receive_command_result(result, callback);
+            });
+        return;
     }
 
     _system_impl->set_flight_mode_async(
@@ -119,6 +133,22 @@ void OffboardImpl::receive_command_result(
         _system_impl->call_user_callback(
             [callback, offboard_result]() { callback(offboard_result); });
     }
+}
+
+MavlinkCommandSender::CommandLong OffboardImpl::make_custom_mode_command(uint32_t mode)
+{
+    // Same encoding as SystemImpl::make_command_ardupilot_mode, but with an
+    // arbitrary mode number instead of a translated FlightMode.
+    const uint8_t flag_safety_armed = _system_impl->is_armed() ? MAV_MODE_FLAG_SAFETY_ARMED : 0;
+    const uint8_t mode_type = MAV_MODE_FLAG_CUSTOM_MODE_ENABLED | flag_safety_armed;
+
+    MavlinkCommandSender::CommandLong command{};
+    command.command = MAV_CMD_DO_SET_MODE;
+    command.params.maybe_param1 = static_cast<float>(mode_type);
+    command.params.maybe_param2 = static_cast<float>(mode);
+    command.target_component_id = MAV_COMP_ID_AUTOPILOT1;
+
+    return command;
 }
 
 Offboard::Result OffboardImpl::set_position_ned(Offboard::PositionNedYaw position_ned_yaw)

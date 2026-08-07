@@ -21,10 +21,10 @@ public:
     void enable() override;
     void disable() override;
 
-    Offboard::Result start();
+    Offboard::Result start(uint32_t mode);
     Offboard::Result stop();
 
-    void start_async(Offboard::ResultCallback callback);
+    void start_async(uint32_t mode, Offboard::ResultCallback callback);
     void stop_async(Offboard::ResultCallback callback);
 
     bool is_active();
@@ -63,6 +63,8 @@ private:
     void process_heartbeat(const mavlink_message_t& message);
     void receive_command_result(
         MavlinkCommandSender::Result result, const Offboard::ResultCallback& callback);
+
+    MavlinkCommandSender::CommandLong make_custom_mode_command(uint32_t mode);
 
     static Offboard::Result
     offboard_result_from_command_result(MavlinkCommandSender::Result result);

@@ -579,7 +579,7 @@ public:
 
     grpc::Status Start(
         grpc::ServerContext* /* context */,
-        const rpc::offboard::StartRequest* /* request */,
+        const rpc::offboard::StartRequest* request,
         rpc::offboard::StartResponse* response) override
     {
         if (_lazy_plugin.maybe_plugin() == nullptr) {
@@ -592,8 +592,13 @@ public:
             return grpc::Status::OK;
         }
 
+        if (request == nullptr) {
+            LogWarn("Start sent with a null request! Ignoring...");
+            return grpc::Status::OK;
+        }
+            
         
-        auto result = _lazy_plugin.maybe_plugin()->start();
+        auto result = _lazy_plugin.maybe_plugin()->start(request->mode());
         
 
         

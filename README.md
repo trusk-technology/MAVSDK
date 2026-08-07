@@ -1,3 +1,42 @@
+## Trusk changes
+
+> This is a fork with local changes to support a **custom ArduPilot flight-mode number for offboard control**.
+
+By default, starting offboard control forces ArduPilot into `GUIDED` mode. In this fork you can pass a custom
+mode number; `mavsdk_server` then sends a `MAV_CMD_DO_SET_MODE` command (with the mode in `param2`) before
+entering offboard.
+
+### What changed
+
+- `proto/protos/offboard/offboard.proto`: `StartRequest` gained `uint32 mode = 1; /* 0 keeps the default
+  behaviour (GUIDED on ArduPilot). */`
+- `offboard_impl.cpp/.hpp`: `start()`/`start_async()` now take a `uint32_t mode`. When `mode != 0` and the
+  autopilot is ArduPilot they send `MAV_CMD_DO_SET_MODE` (`param1` from arming state, `param2` = `mode`);
+  `mode == 0` (and non-ArduPilot autopilots) keep the original `set_flight_mode(FlightMode::Offboard)` path.
+- Regenerated proto/C++ bindings (`offboard.hpp/.cpp`, `offboard_service_impl.hpp`, protobuf stubs) reflect
+  the new `mode` argument.
+
+### How to build both projects
+
+1. **C++ (mavsdk_server)** – build as usual, then configure the Python repo to reuse the local binary:
+   ```sh
+   # from reporoot, build mavsdk_server (as in the original build instructions):
+   cmake -B build/default -DCMAKE_BUILD_TYPE=Release \
+         -DBUILD_MAVSDK_SERVER=ON -DBUILD_MAVSDK_LIB=ON -DBUILD_MAVSDK_CORE=ON
+   cmake --build build/default -j$(nproc)
+   ```
+2. **Python** – the `download_server` script (`other/tools/download_server.py`) copies the newest built
+   `mavsdk_server` from the folder in `MAVSDK_CPP_PROJECT_ROOT` (default `../trusk-mavsdk-cpp`) into
+   `mavsdk/bin/`, so the local mode changes are used instead of the released binary:
+   ```sh
+   export MAVSDK_CPP_PROJECT_ROOT=../trusk-mavsdk-cpp   # optional; this is the default
+   hatch run install-plugin
+   hatch run download-server
+   hatch run generate
+   ```
+   > Note: the locally-built `mavsdk_server` relies on the shared libs in the C++ build dir
+   > (`libmavsdk_server.so.*`). Keep the build tree around, or set `RPATH`/`LD_LIBRARY_PATH` accordingly.
+
 <img alt="MAVSDK" src="docs/assets/site/sdk_logo_full.png" width="400">
 
 [![Linux](https://github.com/mavlink/MAVSDK/actions/workflows/linux.yml/badge.svg?branch=main)](https://github.com/mavlink/MAVSDK/actions/workflows/linux.yml)

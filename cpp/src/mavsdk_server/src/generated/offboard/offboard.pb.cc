@@ -101,14 +101,21 @@ struct StopRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StopRequestDefaultTypeInternal _StopRequest_default_instance_;
-              template <typename>
+
+inline constexpr StartRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : mode_{0u},
+        _cached_size_{0} {}
+
+template <typename>
 PROTOBUF_CONSTEXPR StartRequest::StartRequest(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+    : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase() {
-}
+    : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
 struct StartRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StartRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~StartRequestDefaultTypeInternal() {}
@@ -950,6 +957,7 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::offboard::StartRequest, _impl_.mode_),
         PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::offboard::StartResponse, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::offboard::StartResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1318,41 +1326,41 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::mavsdk::rpc::offboard::StartRequest)},
-        {8, 17, -1, sizeof(::mavsdk::rpc::offboard::StartResponse)},
-        {18, -1, -1, sizeof(::mavsdk::rpc::offboard::StopRequest)},
-        {26, 35, -1, sizeof(::mavsdk::rpc::offboard::StopResponse)},
-        {36, -1, -1, sizeof(::mavsdk::rpc::offboard::IsActiveRequest)},
-        {44, -1, -1, sizeof(::mavsdk::rpc::offboard::IsActiveResponse)},
-        {53, 62, -1, sizeof(::mavsdk::rpc::offboard::SetAttitudeRequest)},
-        {63, 72, -1, sizeof(::mavsdk::rpc::offboard::SetAttitudeResponse)},
-        {73, 82, -1, sizeof(::mavsdk::rpc::offboard::SetActuatorControlRequest)},
-        {83, 92, -1, sizeof(::mavsdk::rpc::offboard::SetActuatorControlResponse)},
-        {93, 102, -1, sizeof(::mavsdk::rpc::offboard::SetAttitudeRateRequest)},
-        {103, 112, -1, sizeof(::mavsdk::rpc::offboard::SetAttitudeRateResponse)},
-        {113, 122, -1, sizeof(::mavsdk::rpc::offboard::SetPositionNedRequest)},
-        {123, 132, -1, sizeof(::mavsdk::rpc::offboard::SetPositionNedResponse)},
-        {133, 142, -1, sizeof(::mavsdk::rpc::offboard::SetPositionGlobalRequest)},
-        {143, 152, -1, sizeof(::mavsdk::rpc::offboard::SetPositionGlobalResponse)},
-        {153, 162, -1, sizeof(::mavsdk::rpc::offboard::SetVelocityBodyRequest)},
-        {163, 172, -1, sizeof(::mavsdk::rpc::offboard::SetVelocityBodyResponse)},
-        {173, 182, -1, sizeof(::mavsdk::rpc::offboard::SetVelocityNedRequest)},
-        {183, 192, -1, sizeof(::mavsdk::rpc::offboard::SetVelocityNedResponse)},
-        {193, 203, -1, sizeof(::mavsdk::rpc::offboard::SetPositionVelocityNedRequest)},
-        {205, 216, -1, sizeof(::mavsdk::rpc::offboard::SetPositionVelocityAccelerationNedRequest)},
-        {219, 228, -1, sizeof(::mavsdk::rpc::offboard::SetPositionVelocityNedResponse)},
-        {229, 238, -1, sizeof(::mavsdk::rpc::offboard::SetPositionVelocityAccelerationNedResponse)},
-        {239, 248, -1, sizeof(::mavsdk::rpc::offboard::SetAccelerationNedRequest)},
-        {249, 258, -1, sizeof(::mavsdk::rpc::offboard::SetAccelerationNedResponse)},
-        {259, -1, -1, sizeof(::mavsdk::rpc::offboard::Attitude)},
-        {271, -1, -1, sizeof(::mavsdk::rpc::offboard::ActuatorControlGroup)},
-        {280, -1, -1, sizeof(::mavsdk::rpc::offboard::ActuatorControl)},
-        {289, -1, -1, sizeof(::mavsdk::rpc::offboard::AttitudeRate)},
-        {301, -1, -1, sizeof(::mavsdk::rpc::offboard::PositionNedYaw)},
-        {313, -1, -1, sizeof(::mavsdk::rpc::offboard::PositionGlobalYaw)},
-        {326, -1, -1, sizeof(::mavsdk::rpc::offboard::VelocityBodyYawspeed)},
-        {338, -1, -1, sizeof(::mavsdk::rpc::offboard::VelocityNedYaw)},
-        {350, -1, -1, sizeof(::mavsdk::rpc::offboard::AccelerationNed)},
-        {361, -1, -1, sizeof(::mavsdk::rpc::offboard::OffboardResult)},
+        {9, 18, -1, sizeof(::mavsdk::rpc::offboard::StartResponse)},
+        {19, -1, -1, sizeof(::mavsdk::rpc::offboard::StopRequest)},
+        {27, 36, -1, sizeof(::mavsdk::rpc::offboard::StopResponse)},
+        {37, -1, -1, sizeof(::mavsdk::rpc::offboard::IsActiveRequest)},
+        {45, -1, -1, sizeof(::mavsdk::rpc::offboard::IsActiveResponse)},
+        {54, 63, -1, sizeof(::mavsdk::rpc::offboard::SetAttitudeRequest)},
+        {64, 73, -1, sizeof(::mavsdk::rpc::offboard::SetAttitudeResponse)},
+        {74, 83, -1, sizeof(::mavsdk::rpc::offboard::SetActuatorControlRequest)},
+        {84, 93, -1, sizeof(::mavsdk::rpc::offboard::SetActuatorControlResponse)},
+        {94, 103, -1, sizeof(::mavsdk::rpc::offboard::SetAttitudeRateRequest)},
+        {104, 113, -1, sizeof(::mavsdk::rpc::offboard::SetAttitudeRateResponse)},
+        {114, 123, -1, sizeof(::mavsdk::rpc::offboard::SetPositionNedRequest)},
+        {124, 133, -1, sizeof(::mavsdk::rpc::offboard::SetPositionNedResponse)},
+        {134, 143, -1, sizeof(::mavsdk::rpc::offboard::SetPositionGlobalRequest)},
+        {144, 153, -1, sizeof(::mavsdk::rpc::offboard::SetPositionGlobalResponse)},
+        {154, 163, -1, sizeof(::mavsdk::rpc::offboard::SetVelocityBodyRequest)},
+        {164, 173, -1, sizeof(::mavsdk::rpc::offboard::SetVelocityBodyResponse)},
+        {174, 183, -1, sizeof(::mavsdk::rpc::offboard::SetVelocityNedRequest)},
+        {184, 193, -1, sizeof(::mavsdk::rpc::offboard::SetVelocityNedResponse)},
+        {194, 204, -1, sizeof(::mavsdk::rpc::offboard::SetPositionVelocityNedRequest)},
+        {206, 217, -1, sizeof(::mavsdk::rpc::offboard::SetPositionVelocityAccelerationNedRequest)},
+        {220, 229, -1, sizeof(::mavsdk::rpc::offboard::SetPositionVelocityNedResponse)},
+        {230, 239, -1, sizeof(::mavsdk::rpc::offboard::SetPositionVelocityAccelerationNedResponse)},
+        {240, 249, -1, sizeof(::mavsdk::rpc::offboard::SetAccelerationNedRequest)},
+        {250, 259, -1, sizeof(::mavsdk::rpc::offboard::SetAccelerationNedResponse)},
+        {260, -1, -1, sizeof(::mavsdk::rpc::offboard::Attitude)},
+        {272, -1, -1, sizeof(::mavsdk::rpc::offboard::ActuatorControlGroup)},
+        {281, -1, -1, sizeof(::mavsdk::rpc::offboard::ActuatorControl)},
+        {290, -1, -1, sizeof(::mavsdk::rpc::offboard::AttitudeRate)},
+        {302, -1, -1, sizeof(::mavsdk::rpc::offboard::PositionNedYaw)},
+        {314, -1, -1, sizeof(::mavsdk::rpc::offboard::PositionGlobalYaw)},
+        {327, -1, -1, sizeof(::mavsdk::rpc::offboard::VelocityBodyYawspeed)},
+        {339, -1, -1, sizeof(::mavsdk::rpc::offboard::VelocityNedYaw)},
+        {351, -1, -1, sizeof(::mavsdk::rpc::offboard::AccelerationNed)},
+        {362, -1, -1, sizeof(::mavsdk::rpc::offboard::OffboardResult)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::mavsdk::rpc::offboard::_StartRequest_default_instance_._instance,
@@ -1395,134 +1403,134 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_offboard_2foffboard_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\027offboard/offboard.proto\022\023mavsdk.rpc.of"
-    "fboard\032\024mavsdk_options.proto\"\016\n\014StartReq"
-    "uest\"M\n\rStartResponse\022<\n\017offboard_result"
-    "\030\001 \001(\0132#.mavsdk.rpc.offboard.OffboardRes"
-    "ult\"\r\n\013StopRequest\"L\n\014StopResponse\022<\n\017of"
-    "fboard_result\030\001 \001(\0132#.mavsdk.rpc.offboar"
-    "d.OffboardResult\"\021\n\017IsActiveRequest\"%\n\020I"
-    "sActiveResponse\022\021\n\tis_active\030\001 \001(\010\"E\n\022Se"
-    "tAttitudeRequest\022/\n\010attitude\030\001 \001(\0132\035.mav"
-    "sdk.rpc.offboard.Attitude\"S\n\023SetAttitude"
+    "fboard\032\024mavsdk_options.proto\"\034\n\014StartReq"
+    "uest\022\014\n\004mode\030\001 \001(\r\"M\n\rStartResponse\022<\n\017o"
+    "ffboard_result\030\001 \001(\0132#.mavsdk.rpc.offboa"
+    "rd.OffboardResult\"\r\n\013StopRequest\"L\n\014Stop"
     "Response\022<\n\017offboard_result\030\001 \001(\0132#.mavs"
-    "dk.rpc.offboard.OffboardResult\"[\n\031SetAct"
-    "uatorControlRequest\022>\n\020actuator_control\030"
-    "\001 \001(\0132$.mavsdk.rpc.offboard.ActuatorCont"
-    "rol\"Z\n\032SetActuatorControlResponse\022<\n\017off"
-    "board_result\030\001 \001(\0132#.mavsdk.rpc.offboard"
-    ".OffboardResult\"R\n\026SetAttitudeRateReques"
-    "t\0228\n\rattitude_rate\030\001 \001(\0132!.mavsdk.rpc.of"
-    "fboard.AttitudeRate\"W\n\027SetAttitudeRateRe"
-    "sponse\022<\n\017offboard_result\030\001 \001(\0132#.mavsdk"
-    ".rpc.offboard.OffboardResult\"V\n\025SetPosit"
-    "ionNedRequest\022=\n\020position_ned_yaw\030\001 \001(\0132"
-    "#.mavsdk.rpc.offboard.PositionNedYaw\"V\n\026"
-    "SetPositionNedResponse\022<\n\017offboard_resul"
+    "dk.rpc.offboard.OffboardResult\"\021\n\017IsActi"
+    "veRequest\"%\n\020IsActiveResponse\022\021\n\tis_acti"
+    "ve\030\001 \001(\010\"E\n\022SetAttitudeRequest\022/\n\010attitu"
+    "de\030\001 \001(\0132\035.mavsdk.rpc.offboard.Attitude\""
+    "S\n\023SetAttitudeResponse\022<\n\017offboard_resul"
     "t\030\001 \001(\0132#.mavsdk.rpc.offboard.OffboardRe"
-    "sult\"_\n\030SetPositionGlobalRequest\022C\n\023posi"
-    "tion_global_yaw\030\001 \001(\0132&.mavsdk.rpc.offbo"
-    "ard.PositionGlobalYaw\"Y\n\031SetPositionGlob"
-    "alResponse\022<\n\017offboard_result\030\001 \001(\0132#.ma"
-    "vsdk.rpc.offboard.OffboardResult\"c\n\026SetV"
-    "elocityBodyRequest\022I\n\026velocity_body_yaws"
-    "peed\030\001 \001(\0132).mavsdk.rpc.offboard.Velocit"
-    "yBodyYawspeed\"W\n\027SetVelocityBodyResponse"
-    "\022<\n\017offboard_result\030\001 \001(\0132#.mavsdk.rpc.o"
-    "ffboard.OffboardResult\"V\n\025SetVelocityNed"
-    "Request\022=\n\020velocity_ned_yaw\030\001 \001(\0132#.mavs"
-    "dk.rpc.offboard.VelocityNedYaw\"V\n\026SetVel"
-    "ocityNedResponse\022<\n\017offboard_result\030\001 \001("
-    "\0132#.mavsdk.rpc.offboard.OffboardResult\"\235"
-    "\001\n\035SetPositionVelocityNedRequest\022=\n\020posi"
-    "tion_ned_yaw\030\001 \001(\0132#.mavsdk.rpc.offboard"
-    ".PositionNedYaw\022=\n\020velocity_ned_yaw\030\002 \001("
-    "\0132#.mavsdk.rpc.offboard.VelocityNedYaw\"\351"
-    "\001\n)SetPositionVelocityAccelerationNedReq"
-    "uest\022=\n\020position_ned_yaw\030\001 \001(\0132#.mavsdk."
-    "rpc.offboard.PositionNedYaw\022=\n\020velocity_"
-    "ned_yaw\030\002 \001(\0132#.mavsdk.rpc.offboard.Velo"
-    "cityNedYaw\022>\n\020acceleration_ned\030\003 \001(\0132$.m"
-    "avsdk.rpc.offboard.AccelerationNed\"^\n\036Se"
-    "tPositionVelocityNedResponse\022<\n\017offboard"
-    "_result\030\001 \001(\0132#.mavsdk.rpc.offboard.Offb"
-    "oardResult\"j\n*SetPositionVelocityAcceler"
-    "ationNedResponse\022<\n\017offboard_result\030\001 \001("
-    "\0132#.mavsdk.rpc.offboard.OffboardResult\"["
-    "\n\031SetAccelerationNedRequest\022>\n\020accelerat"
-    "ion_ned\030\001 \001(\0132$.mavsdk.rpc.offboard.Acce"
-    "lerationNed\"Z\n\032SetAccelerationNedRespons"
-    "e\022<\n\017offboard_result\030\001 \001(\0132#.mavsdk.rpc."
-    "offboard.OffboardResult\"V\n\010Attitude\022\020\n\010r"
-    "oll_deg\030\001 \001(\002\022\021\n\tpitch_deg\030\002 \001(\002\022\017\n\007yaw_"
-    "deg\030\003 \001(\002\022\024\n\014thrust_value\030\004 \001(\002\"(\n\024Actua"
-    "torControlGroup\022\020\n\010controls\030\001 \003(\002\"L\n\017Act"
-    "uatorControl\0229\n\006groups\030\001 \003(\0132).mavsdk.rp"
-    "c.offboard.ActuatorControlGroup\"`\n\014Attit"
-    "udeRate\022\022\n\nroll_deg_s\030\001 \001(\002\022\023\n\013pitch_deg"
-    "_s\030\002 \001(\002\022\021\n\tyaw_deg_s\030\003 \001(\002\022\024\n\014thrust_va"
-    "lue\030\004 \001(\002\"R\n\016PositionNedYaw\022\017\n\007north_m\030\001"
-    " \001(\002\022\016\n\006east_m\030\002 \001(\002\022\016\n\006down_m\030\003 \001(\002\022\017\n\007"
-    "yaw_deg\030\004 \001(\002\"\374\001\n\021PositionGlobalYaw\022\017\n\007l"
-    "at_deg\030\001 \001(\001\022\017\n\007lon_deg\030\002 \001(\001\022\r\n\005alt_m\030\003"
-    " \001(\002\022\017\n\007yaw_deg\030\004 \001(\002\022J\n\raltitude_type\030\005"
-    " \001(\01623.mavsdk.rpc.offboard.PositionGloba"
-    "lYaw.AltitudeType\"Y\n\014AltitudeType\022\032\n\026ALT"
-    "ITUDE_TYPE_REL_HOME\020\000\022\026\n\022ALTITUDE_TYPE_A"
-    "MSL\020\001\022\025\n\021ALTITUDE_TYPE_AGL\020\002\"h\n\024Velocity"
-    "BodyYawspeed\022\023\n\013forward_m_s\030\001 \001(\002\022\021\n\trig"
-    "ht_m_s\030\002 \001(\002\022\020\n\010down_m_s\030\003 \001(\002\022\026\n\016yawspe"
-    "ed_deg_s\030\004 \001(\002\"X\n\016VelocityNedYaw\022\021\n\tnort"
-    "h_m_s\030\001 \001(\002\022\020\n\010east_m_s\030\002 \001(\002\022\020\n\010down_m_"
-    "s\030\003 \001(\002\022\017\n\007yaw_deg\030\004 \001(\002\"K\n\017Acceleration"
-    "Ned\022\022\n\nnorth_m_s2\030\001 \001(\002\022\021\n\teast_m_s2\030\002 \001"
-    "(\002\022\021\n\tdown_m_s2\030\003 \001(\002\"\265\002\n\016OffboardResult"
-    "\022:\n\006result\030\001 \001(\0162*.mavsdk.rpc.offboard.O"
-    "ffboardResult.Result\022\022\n\nresult_str\030\002 \001(\t"
-    "\"\322\001\n\006Result\022\022\n\016RESULT_UNKNOWN\020\000\022\022\n\016RESUL"
-    "T_SUCCESS\020\001\022\024\n\020RESULT_NO_SYSTEM\020\002\022\033\n\027RES"
-    "ULT_CONNECTION_ERROR\020\003\022\017\n\013RESULT_BUSY\020\004\022"
-    "\031\n\025RESULT_COMMAND_DENIED\020\005\022\022\n\016RESULT_TIM"
-    "EOUT\020\006\022\032\n\026RESULT_NO_SETPOINT_SET\020\007\022\021\n\rRE"
-    "SULT_FAILED\020\0102\357\013\n\017OffboardService\022P\n\005Sta"
-    "rt\022!.mavsdk.rpc.offboard.StartRequest\032\"."
-    "mavsdk.rpc.offboard.StartResponse\"\000\022M\n\004S"
-    "top\022 .mavsdk.rpc.offboard.StopRequest\032!."
-    "mavsdk.rpc.offboard.StopResponse\"\000\022]\n\010Is"
-    "Active\022$.mavsdk.rpc.offboard.IsActiveReq"
-    "uest\032%.mavsdk.rpc.offboard.IsActiveRespo"
-    "nse\"\004\200\265\030\001\022f\n\013SetAttitude\022\'.mavsdk.rpc.of"
-    "fboard.SetAttitudeRequest\032(.mavsdk.rpc.o"
-    "ffboard.SetAttitudeResponse\"\004\200\265\030\001\022{\n\022Set"
-    "ActuatorControl\022..mavsdk.rpc.offboard.Se"
-    "tActuatorControlRequest\032/.mavsdk.rpc.off"
-    "board.SetActuatorControlResponse\"\004\200\265\030\001\022r"
-    "\n\017SetAttitudeRate\022+.mavsdk.rpc.offboard."
-    "SetAttitudeRateRequest\032,.mavsdk.rpc.offb"
-    "oard.SetAttitudeRateResponse\"\004\200\265\030\001\022o\n\016Se"
-    "tPositionNed\022*.mavsdk.rpc.offboard.SetPo"
-    "sitionNedRequest\032+.mavsdk.rpc.offboard.S"
-    "etPositionNedResponse\"\004\200\265\030\001\022x\n\021SetPositi"
-    "onGlobal\022-.mavsdk.rpc.offboard.SetPositi"
-    "onGlobalRequest\032..mavsdk.rpc.offboard.Se"
-    "tPositionGlobalResponse\"\004\200\265\030\001\022r\n\017SetVelo"
-    "cityBody\022+.mavsdk.rpc.offboard.SetVeloci"
-    "tyBodyRequest\032,.mavsdk.rpc.offboard.SetV"
-    "elocityBodyResponse\"\004\200\265\030\001\022o\n\016SetVelocity"
-    "Ned\022*.mavsdk.rpc.offboard.SetVelocityNed"
-    "Request\032+.mavsdk.rpc.offboard.SetVelocit"
-    "yNedResponse\"\004\200\265\030\001\022\207\001\n\026SetPositionVeloci"
-    "tyNed\0222.mavsdk.rpc.offboard.SetPositionV"
-    "elocityNedRequest\0323.mavsdk.rpc.offboard."
-    "SetPositionVelocityNedResponse\"\004\200\265\030\001\022\253\001\n"
-    "\"SetPositionVelocityAccelerationNed\022>.ma"
-    "vsdk.rpc.offboard.SetPositionVelocityAcc"
-    "elerationNedRequest\032\?.mavsdk.rpc.offboar"
-    "d.SetPositionVelocityAccelerationNedResp"
-    "onse\"\004\200\265\030\001\022{\n\022SetAccelerationNed\022..mavsd"
-    "k.rpc.offboard.SetAccelerationNedRequest"
-    "\032/.mavsdk.rpc.offboard.SetAccelerationNe"
-    "dResponse\"\004\200\265\030\001B#\n\022io.mavsdk.offboardB\rO"
-    "ffboardProtob\006proto3"
+    "sult\"[\n\031SetActuatorControlRequest\022>\n\020act"
+    "uator_control\030\001 \001(\0132$.mavsdk.rpc.offboar"
+    "d.ActuatorControl\"Z\n\032SetActuatorControlR"
+    "esponse\022<\n\017offboard_result\030\001 \001(\0132#.mavsd"
+    "k.rpc.offboard.OffboardResult\"R\n\026SetAtti"
+    "tudeRateRequest\0228\n\rattitude_rate\030\001 \001(\0132!"
+    ".mavsdk.rpc.offboard.AttitudeRate\"W\n\027Set"
+    "AttitudeRateResponse\022<\n\017offboard_result\030"
+    "\001 \001(\0132#.mavsdk.rpc.offboard.OffboardResu"
+    "lt\"V\n\025SetPositionNedRequest\022=\n\020position_"
+    "ned_yaw\030\001 \001(\0132#.mavsdk.rpc.offboard.Posi"
+    "tionNedYaw\"V\n\026SetPositionNedResponse\022<\n\017"
+    "offboard_result\030\001 \001(\0132#.mavsdk.rpc.offbo"
+    "ard.OffboardResult\"_\n\030SetPositionGlobalR"
+    "equest\022C\n\023position_global_yaw\030\001 \001(\0132&.ma"
+    "vsdk.rpc.offboard.PositionGlobalYaw\"Y\n\031S"
+    "etPositionGlobalResponse\022<\n\017offboard_res"
+    "ult\030\001 \001(\0132#.mavsdk.rpc.offboard.Offboard"
+    "Result\"c\n\026SetVelocityBodyRequest\022I\n\026velo"
+    "city_body_yawspeed\030\001 \001(\0132).mavsdk.rpc.of"
+    "fboard.VelocityBodyYawspeed\"W\n\027SetVeloci"
+    "tyBodyResponse\022<\n\017offboard_result\030\001 \001(\0132"
+    "#.mavsdk.rpc.offboard.OffboardResult\"V\n\025"
+    "SetVelocityNedRequest\022=\n\020velocity_ned_ya"
+    "w\030\001 \001(\0132#.mavsdk.rpc.offboard.VelocityNe"
+    "dYaw\"V\n\026SetVelocityNedResponse\022<\n\017offboa"
+    "rd_result\030\001 \001(\0132#.mavsdk.rpc.offboard.Of"
+    "fboardResult\"\235\001\n\035SetPositionVelocityNedR"
+    "equest\022=\n\020position_ned_yaw\030\001 \001(\0132#.mavsd"
+    "k.rpc.offboard.PositionNedYaw\022=\n\020velocit"
+    "y_ned_yaw\030\002 \001(\0132#.mavsdk.rpc.offboard.Ve"
+    "locityNedYaw\"\351\001\n)SetPositionVelocityAcce"
+    "lerationNedRequest\022=\n\020position_ned_yaw\030\001"
+    " \001(\0132#.mavsdk.rpc.offboard.PositionNedYa"
+    "w\022=\n\020velocity_ned_yaw\030\002 \001(\0132#.mavsdk.rpc"
+    ".offboard.VelocityNedYaw\022>\n\020acceleration"
+    "_ned\030\003 \001(\0132$.mavsdk.rpc.offboard.Acceler"
+    "ationNed\"^\n\036SetPositionVelocityNedRespon"
+    "se\022<\n\017offboard_result\030\001 \001(\0132#.mavsdk.rpc"
+    ".offboard.OffboardResult\"j\n*SetPositionV"
+    "elocityAccelerationNedResponse\022<\n\017offboa"
+    "rd_result\030\001 \001(\0132#.mavsdk.rpc.offboard.Of"
+    "fboardResult\"[\n\031SetAccelerationNedReques"
+    "t\022>\n\020acceleration_ned\030\001 \001(\0132$.mavsdk.rpc"
+    ".offboard.AccelerationNed\"Z\n\032SetAccelera"
+    "tionNedResponse\022<\n\017offboard_result\030\001 \001(\013"
+    "2#.mavsdk.rpc.offboard.OffboardResult\"V\n"
+    "\010Attitude\022\020\n\010roll_deg\030\001 \001(\002\022\021\n\tpitch_deg"
+    "\030\002 \001(\002\022\017\n\007yaw_deg\030\003 \001(\002\022\024\n\014thrust_value\030"
+    "\004 \001(\002\"(\n\024ActuatorControlGroup\022\020\n\010control"
+    "s\030\001 \003(\002\"L\n\017ActuatorControl\0229\n\006groups\030\001 \003"
+    "(\0132).mavsdk.rpc.offboard.ActuatorControl"
+    "Group\"`\n\014AttitudeRate\022\022\n\nroll_deg_s\030\001 \001("
+    "\002\022\023\n\013pitch_deg_s\030\002 \001(\002\022\021\n\tyaw_deg_s\030\003 \001("
+    "\002\022\024\n\014thrust_value\030\004 \001(\002\"R\n\016PositionNedYa"
+    "w\022\017\n\007north_m\030\001 \001(\002\022\016\n\006east_m\030\002 \001(\002\022\016\n\006do"
+    "wn_m\030\003 \001(\002\022\017\n\007yaw_deg\030\004 \001(\002\"\374\001\n\021Position"
+    "GlobalYaw\022\017\n\007lat_deg\030\001 \001(\001\022\017\n\007lon_deg\030\002 "
+    "\001(\001\022\r\n\005alt_m\030\003 \001(\002\022\017\n\007yaw_deg\030\004 \001(\002\022J\n\ra"
+    "ltitude_type\030\005 \001(\01623.mavsdk.rpc.offboard"
+    ".PositionGlobalYaw.AltitudeType\"Y\n\014Altit"
+    "udeType\022\032\n\026ALTITUDE_TYPE_REL_HOME\020\000\022\026\n\022A"
+    "LTITUDE_TYPE_AMSL\020\001\022\025\n\021ALTITUDE_TYPE_AGL"
+    "\020\002\"h\n\024VelocityBodyYawspeed\022\023\n\013forward_m_"
+    "s\030\001 \001(\002\022\021\n\tright_m_s\030\002 \001(\002\022\020\n\010down_m_s\030\003"
+    " \001(\002\022\026\n\016yawspeed_deg_s\030\004 \001(\002\"X\n\016Velocity"
+    "NedYaw\022\021\n\tnorth_m_s\030\001 \001(\002\022\020\n\010east_m_s\030\002 "
+    "\001(\002\022\020\n\010down_m_s\030\003 \001(\002\022\017\n\007yaw_deg\030\004 \001(\002\"K"
+    "\n\017AccelerationNed\022\022\n\nnorth_m_s2\030\001 \001(\002\022\021\n"
+    "\teast_m_s2\030\002 \001(\002\022\021\n\tdown_m_s2\030\003 \001(\002\"\265\002\n\016"
+    "OffboardResult\022:\n\006result\030\001 \001(\0162*.mavsdk."
+    "rpc.offboard.OffboardResult.Result\022\022\n\nre"
+    "sult_str\030\002 \001(\t\"\322\001\n\006Result\022\022\n\016RESULT_UNKN"
+    "OWN\020\000\022\022\n\016RESULT_SUCCESS\020\001\022\024\n\020RESULT_NO_S"
+    "YSTEM\020\002\022\033\n\027RESULT_CONNECTION_ERROR\020\003\022\017\n\013"
+    "RESULT_BUSY\020\004\022\031\n\025RESULT_COMMAND_DENIED\020\005"
+    "\022\022\n\016RESULT_TIMEOUT\020\006\022\032\n\026RESULT_NO_SETPOI"
+    "NT_SET\020\007\022\021\n\rRESULT_FAILED\020\0102\357\013\n\017Offboard"
+    "Service\022P\n\005Start\022!.mavsdk.rpc.offboard.S"
+    "tartRequest\032\".mavsdk.rpc.offboard.StartR"
+    "esponse\"\000\022M\n\004Stop\022 .mavsdk.rpc.offboard."
+    "StopRequest\032!.mavsdk.rpc.offboard.StopRe"
+    "sponse\"\000\022]\n\010IsActive\022$.mavsdk.rpc.offboa"
+    "rd.IsActiveRequest\032%.mavsdk.rpc.offboard"
+    ".IsActiveResponse\"\004\200\265\030\001\022f\n\013SetAttitude\022\'"
+    ".mavsdk.rpc.offboard.SetAttitudeRequest\032"
+    "(.mavsdk.rpc.offboard.SetAttitudeRespons"
+    "e\"\004\200\265\030\001\022{\n\022SetActuatorControl\022..mavsdk.r"
+    "pc.offboard.SetActuatorControlRequest\032/."
+    "mavsdk.rpc.offboard.SetActuatorControlRe"
+    "sponse\"\004\200\265\030\001\022r\n\017SetAttitudeRate\022+.mavsdk"
+    ".rpc.offboard.SetAttitudeRateRequest\032,.m"
+    "avsdk.rpc.offboard.SetAttitudeRateRespon"
+    "se\"\004\200\265\030\001\022o\n\016SetPositionNed\022*.mavsdk.rpc."
+    "offboard.SetPositionNedRequest\032+.mavsdk."
+    "rpc.offboard.SetPositionNedResponse\"\004\200\265\030"
+    "\001\022x\n\021SetPositionGlobal\022-.mavsdk.rpc.offb"
+    "oard.SetPositionGlobalRequest\032..mavsdk.r"
+    "pc.offboard.SetPositionGlobalResponse\"\004\200"
+    "\265\030\001\022r\n\017SetVelocityBody\022+.mavsdk.rpc.offb"
+    "oard.SetVelocityBodyRequest\032,.mavsdk.rpc"
+    ".offboard.SetVelocityBodyResponse\"\004\200\265\030\001\022"
+    "o\n\016SetVelocityNed\022*.mavsdk.rpc.offboard."
+    "SetVelocityNedRequest\032+.mavsdk.rpc.offbo"
+    "ard.SetVelocityNedResponse\"\004\200\265\030\001\022\207\001\n\026Set"
+    "PositionVelocityNed\0222.mavsdk.rpc.offboar"
+    "d.SetPositionVelocityNedRequest\0323.mavsdk"
+    ".rpc.offboard.SetPositionVelocityNedResp"
+    "onse\"\004\200\265\030\001\022\253\001\n\"SetPositionVelocityAccele"
+    "rationNed\022>.mavsdk.rpc.offboard.SetPosit"
+    "ionVelocityAccelerationNedRequest\032\?.mavs"
+    "dk.rpc.offboard.SetPositionVelocityAccel"
+    "erationNedResponse\"\004\200\265\030\001\022{\n\022SetAccelerat"
+    "ionNed\022..mavsdk.rpc.offboard.SetAccelera"
+    "tionNedRequest\032/.mavsdk.rpc.offboard.Set"
+    "AccelerationNedResponse\"\004\200\265\030\001B#\n\022io.mavs"
+    "dk.offboardB\rOffboardProtob\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_offboard_2foffboard_2eproto_deps[1] =
     {
@@ -1532,7 +1540,7 @@ static ::absl::once_flag descriptor_table_offboard_2foffboard_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_offboard_2foffboard_2eproto = {
     false,
     false,
-    5140,
+    5154,
     descriptor_table_protodef_offboard_2foffboard_2eproto,
     "offboard/offboard.proto",
     &descriptor_table_offboard_2foffboard_2eproto_once,
@@ -1604,26 +1612,36 @@ class StartRequest::_Internal {
 
 StartRequest::StartRequest(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+    : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.offboard.StartRequest)
 }
 StartRequest::StartRequest(
-    ::google::protobuf::Arena* arena,
-    const StartRequest& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  StartRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
+    ::google::protobuf::Arena* arena, const StartRequest& from)
+    : StartRequest(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE StartRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.offboard.StartRequest)
+inline void StartRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.mode_ = {};
+}
+StartRequest::~StartRequest() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.offboard.StartRequest)
+  SharedDtor(*this);
+}
+inline void StartRequest::SharedDtor(MessageLite& self) {
+  StartRequest& this_ = static_cast<StartRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
 }
 
 inline void* StartRequest::PlacementNew_(const void*, void* mem,
@@ -1643,10 +1661,10 @@ const ::google::protobuf::internal::ClassDataFull StartRequest::_class_data_ = {
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
         &StartRequest::MergeImpl,
-        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<StartRequest>(),
+        ::google::protobuf::Message::GetNewImpl<StartRequest>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
         &StartRequest::SharedDtor,
-        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<StartRequest>(), &StartRequest::ByteSizeLong,
+        ::google::protobuf::Message::GetClearImpl<StartRequest>(), &StartRequest::ByteSizeLong,
             &StartRequest::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
         PROTOBUF_FIELD_OFFSET(StartRequest, _impl_._cached_size_),
@@ -1662,15 +1680,15 @@ const ::google::protobuf::internal::ClassData* StartRequest::GetClassData() cons
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 0, 0, 0, 2> StartRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> StartRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    0, 0,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967295,  // skipmap
-    offsetof(decltype(_table_), field_names),  // no field_entries
-    0,  // num_field_entries
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -1680,24 +1698,118 @@ const ::_pbi::TcParseTable<0, 0, 0, 0, 2> StartRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::mavsdk::rpc::offboard::StartRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // uint32 mode = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(StartRequest, _impl_.mode_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(StartRequest, _impl_.mode_)}},
   }}, {{
     65535, 65535
+  }}, {{
+    // uint32 mode = 1;
+    {PROTOBUF_FIELD_OFFSET(StartRequest, _impl_.mode_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
   }},
-  // no field_entries, or aux_entries
+  // no aux_entries
   {{
   }},
 };
 
+PROTOBUF_NOINLINE void StartRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.offboard.StartRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.mode_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* StartRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const StartRequest& this_ = static_cast<const StartRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* StartRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const StartRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.offboard.StartRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // uint32 mode = 1;
+          if (this_._internal_mode() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                1, this_._internal_mode(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.offboard.StartRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t StartRequest::ByteSizeLong(const MessageLite& base) {
+          const StartRequest& this_ = static_cast<const StartRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t StartRequest::ByteSizeLong() const {
+          const StartRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.offboard.StartRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // uint32 mode = 1;
+            if (this_._internal_mode() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_mode());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void StartRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<StartRequest*>(&to_msg);
+  auto& from = static_cast<const StartRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.offboard.StartRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_mode() != 0) {
+    _this->_impl_.mode_ = from._impl_.mode_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void StartRequest::CopyFrom(const StartRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.offboard.StartRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
 
 
-
-
-
-
+void StartRequest::InternalSwap(StartRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.mode_, other->_impl_.mode_);
+}
 
 ::google::protobuf::Metadata StartRequest::GetMetadata() const {
-  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 

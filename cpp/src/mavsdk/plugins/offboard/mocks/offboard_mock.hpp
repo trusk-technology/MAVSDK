@@ -7,7 +7,7 @@ namespace testing {
 
 class MockOffboard {
 public:
-    MOCK_CONST_METHOD0(start, Offboard::Result()) {};
+    MOCK_CONST_METHOD1(start, Offboard::Result(uint32_t)) {};
     MOCK_CONST_METHOD0(stop, Offboard::Result()) {};
     MOCK_CONST_METHOD0(is_active, bool()) {};
     MOCK_CONST_METHOD1(set_attitude, Offboard::Result(Offboard::Attitude)) {};
